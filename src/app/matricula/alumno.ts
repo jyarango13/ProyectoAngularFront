@@ -3,7 +3,7 @@ export class Alumno{
         public id?: string,
         public nombres?: string,
         public apellidos?: string,
-        public fecNac?:Date,
+        public fecNac?:string,
         public direccion?: string,
         public correo?: string,
         public telefono?: string,
