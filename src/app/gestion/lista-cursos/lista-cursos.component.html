@@ -1,1 +1,9 @@
-<p>lista-cursos works!</p>
+<div class="container mt-3">
+    <h2>Lista de Cursos</h2>
+    <button class="btn btn-primary mb-3" (click)="addCurso()">Agregar Nuevo Curso</button>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let curso of cursos">
+        {{curso.nombre}} - {{curso.horas}} horas - {{curso.creditos}} créditos - Categoría: {{curso.categoria}}
+      </li>
+    </ul>
+  </div>
