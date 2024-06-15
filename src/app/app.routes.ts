@@ -11,7 +11,8 @@ export const routes: Routes = [
     { path: 'cursos', component: ListaCursosComponent },
     { path: 'alumnos', component: ListaAlumnosComponent },
     //Modulo matricula
-    { path: 'matricula', component: FormularioMatriculaComponent },
-
-    { path: 'pago', component: FormularioPagoComponent }
+    { path: 'matriculas', component: FormularioMatriculaComponent },
+    { path: 'pagos', component: FormularioPagoComponent },
+   // { path: 'matricula', component: ListaAlumnosComponent, outlet: 'secondary' },
+   
 ];
