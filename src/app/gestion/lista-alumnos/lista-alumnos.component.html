@@ -1,9 +1,41 @@
-<div class="container mt-3">
+
+  <div class="container mt-3">
     <h2>Lista de Alumnos</h2>
-    <button class="btn btn-primary mb-3" (click)="addAlumno()">Agregar Nuevo Alumno</button>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let alumno of alumnos">
-        {{alumno.nombres}} {{alumno.apellidos}} - {{alumno.correo}} - {{alumno.telefono}}
-      </li>
-    </ul>
+    <button class="btn btn-primary mb-3" (click)="toggleForm()">Agregar Nuevo Alumno</button>
+    
+    <div *ngIf="showForm">
+      <form (ngSubmit)="addAlumno()">
+        <div class="form-group">
+          <label for="nombres">Nombres</label>
+          <input type="text" class="form-control" id="nombres" [(ngModel)]="newAlumno.nombres" name="nombres" required>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" [(ngModel)]="newAlumno.apellidos" name="apellidos" required>
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo</label>
+          <input type="email" class="form-control" id="correo" [(ngModel)]="newAlumno.correo" name="correo" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" class="form-control" id="telefono" [(ngModel)]="newAlumno.telefono" name="telefono" required>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Agregar Alumno</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let alumno of alumnos">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{alumno.nombres}} {{alumno.apellidos}}</h5>
+            <small>{{alumno.correo}}</small>
+          </div>
+          <p class="mb-1">Teléfono: {{alumno.telefono}}</p>
+          <small>Dirección: {{alumno.direccion}}</small>
+        </li>
+      </ul>
+    </div>
   </div>
+  
