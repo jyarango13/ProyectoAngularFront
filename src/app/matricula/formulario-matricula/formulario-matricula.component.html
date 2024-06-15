@@ -5,16 +5,25 @@
 			<input type="text" class="form-control" id="id" required [(ngModel)]="modelo.id" name="id">
 
 			<label for="id">Nombre</label>
-			<input type="text" class="form-control" id="id" required [(ngModel)]="modelo.nombre" name="nombre">
+			<input type="text" class="form-control" id="nombre" required [(ngModel)]="modelo.nombre" name="nombre">
+
+			<label for="id">Horas</label>
+			<input type="number" class="form-control" id="horas" required [(ngModel)]="modelo.horas" name="horas">
 
 			<label for="id">Creditos</label>
-
 			<select class="form-control" id="creditos" required [(ngModel)]="modelo.creditos" name="credito">
 				<option *ngFor="let credito of creditos" [value]="credito">
 					{{credito}}
 				</option>
 			</select>
+			<label for="id">Categoria</label>
+			<select class="form-control" id="categorias" required [(ngModel)]="modelo.categorias" name="categoria">
+				<option *ngFor="let categoria of categorias" [value]="categoria">
+					{{categoria}}
+				</option>
+			</select>
 		</div>
+
 
 		<button type="submit" class="btn btn-primary" [disabled]="!matriculaForm.valid">Enviar</button>
 	</form>
@@ -23,6 +32,10 @@
 	<h2>Formulario</h2>
 	<div>
 		Id: {{modelo.id}}
-		<button class="btn btn-primary" (click)="enviado=false">Enviar</button>
+		Nombre: {{modelo.nombre}}
+		Horas: {{modelo.horas}}
+		Creditos: {{modelo.creditos}}
+		Categoría: {{modelo.categorias}}
+		<button class="btn btn-primary" (click)="enviado=false">Editar</button>
 	</div>
-	
+</div>

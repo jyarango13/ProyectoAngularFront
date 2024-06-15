@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class FormularioMatriculaComponent{
   creditos = [0, 1, 2, 3, 4, 5];
-  modelo = new Curso("Hola", "1", this.creditos[3]);
+  categorias = ["software", "gestión", "otros"];
+  modelo = new Curso("Hola", "Jose",3, this.creditos[3],this.categorias[0]);
   enviado = false;
 
   ngOnInit(): void { }
@@ -20,5 +21,11 @@ export class FormularioMatriculaComponent{
     this.enviado = true;
   }
 }
+
+// public id?: string,
+// public nombre?: string,
+// public horas?: number,
+// public creditos?: number,
+// public categoria?: string,
 
 
