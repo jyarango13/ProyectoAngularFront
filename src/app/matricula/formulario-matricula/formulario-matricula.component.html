@@ -1,1 +1,28 @@
-<p>formulario-matricula works!</p>
+<div [hidden]="enviado">
+	<form (ngSubmit)="onSubmit()" #matriculaForm="ngForm">
+		<div class="form.group">
+			<label for="id">Id</label>
+			<input type="text" class="form-control" id="id" required [(ngModel)]="modelo.id" name="id">
+
+			<label for="id">Nombre</label>
+			<input type="text" class="form-control" id="id" required [(ngModel)]="modelo.nombre" name="nombre">
+
+			<label for="id">Creditos</label>
+
+			<select class="form-control" id="creditos" required [(ngModel)]="modelo.creditos" name="credito">
+				<option *ngFor="let credito of creditos" [value]="credito">
+					{{credito}}
+				</option>
+			</select>
+		</div>
+
+		<button type="submit" class="btn btn-primary" [disabled]="!matriculaForm.valid">Enviar</button>
+	</form>
+</div>
+<div [hidden]="!enviado">
+	<h2>Formulario</h2>
+	<div>
+		Id: {{modelo.id}}
+		<button class="btn btn-primary" (click)="enviado=false">Enviar</button>
+	</div>
+	
