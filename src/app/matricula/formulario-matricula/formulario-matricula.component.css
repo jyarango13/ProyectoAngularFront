@@ -1,0 +1,13 @@
+.card {
+    margin-top: 20px;
+  }
+  
+  .list-group-item {
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  h5 {
+    color: #007bff;
+  }

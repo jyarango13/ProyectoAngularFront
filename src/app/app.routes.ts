@@ -5,6 +5,7 @@ import { FormularioMatriculaComponent } from './matricula/formulario-matricula/f
 import { FormularioPagoComponent } from './matricula/formulario-pago/formulario-pago.component';
 import { CarruselAppComponent } from './utiles/carrusel-app/carrusel-app.component';
 
+
 export const routes: Routes = [
 
     { path: '', component:CarruselAppComponent},

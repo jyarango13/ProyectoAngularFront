@@ -1,4 +1,4 @@
-<div [hidden]="enviado">
+<!-- <div [hidden]="enviado">
 	<form (ngSubmit)="onSubmit()" #matriculaForm="ngForm">
 		<div class="form.group">
 			<label for="id">Id</label>
@@ -38,4 +38,27 @@
 		Categoría: {{modelo.categorias}}
 		<button class="btn btn-primary" (click)="enviado=false">Editar</button>
 	</div>
-</div>
+</div> -->
+<div class="container mt-3">
+	<h2>Formulario de Matrícula</h2>
+	<form (ngSubmit)="onSubmit()" #matriculaForm="ngForm">
+	  <div class="form-group">
+		<label for="alumno">Alumno</label>
+		<select class="form-control" id="alumno" [(ngModel)]="matricula.alumnoId" name="alumno" required>
+		  <option *ngFor="let alumno of alumnos" [value]="alumno.id">
+			{{ alumno.nombres }} {{ alumno.apellidos }}
+		  </option>
+		</select>
+	  </div>
+	  <div class="form-group">
+		<label for="curso">Curso</label>
+		<select class="form-control" id="curso" [(ngModel)]="matricula.cursoId" name="curso" required>
+		  <option *ngFor="let curso of cursos" [value]="curso.id">
+			{{ curso.nombre }}
+		  </option>
+		</select>
+	  </div>
+	  <button type="submit" class="btn btn-primary mt-3">Matricular</button>
+	</form>
+  </div>
+  

@@ -1,7 +1,9 @@
 
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Alumno } from '../../matricula/alumno';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -10,52 +12,45 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './lista-alumnos.component.html',
   styleUrls: ['./lista-alumnos.component.css']
 })
+
+
 export class ListaAlumnosComponent implements OnInit {
-  alumnos = [
-    { id: 1, nombres: 'Juan', apellidos: 'Perez', fechaNacimiento: '1990-01-01', direccion: 'Calle 123', correo: 'juan@example.com', telefono: '123456789' },
-    { id: 2, nombres: 'Maria', apellidos: 'Lopez', fechaNacimiento: '1992-02-02', direccion: 'Avenida 456', correo: 'maria@example.com', telefono: '987654321' }
-    // Agrega más alumnos según sea necesario
-  ];
+  // //alumnos: Alumno[] =[];
+  // alumnos = this.dataService.getAlumnos();;
+  // showForm = false;
+  // newAlumno: Alumno = new Alumno();
 
+  // constructor(private dataService: DataService) { }
+
+  // ngOnInit(): void {
+  //   this.alumnos = this.dataService.getAlumnos();
+  // }
+
+  // toggleForm(): void {
+  //   this.showForm = !this.showForm;
+  // }
+
+
+  alumnos: Alumno[] = [];
   showForm = false;
+  newAlumno: Alumno = new Alumno();
 
-  newAlumno = {
-    id: 0,
-    nombres: '',
-    apellidos: '',
-    fechaNacimiento: '',
-    direccion: '',
-    correo: '',
-    telefono: ''
-  };
+  constructor(private dataService: DataService) { }
 
-  constructor() { }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.alumnos = this.dataService.getAlumnos();
+  }
 
   toggleForm(): void {
     this.showForm = !this.showForm;
   }
-
   addAlumno(): void {
-    const newId = this.alumnos.length > 0 ? Math.max(...this.alumnos.map(alumno => alumno.id)) + 1 : 1;
-    this.newAlumno.id = newId;
-    this.alumnos.push({ ...this.newAlumno });
-    this.resetForm();
-  }
-
-  resetForm(): void {
-    this.newAlumno = {
-      id: 0,
-      nombres: '',
-      apellidos: '',
-      fechaNacimiento: '',
-      direccion: '',
-      correo: '',
-      telefono: ''
-    };
+    this.dataService.addAlumno(this.newAlumno);
+    this.alumnos = this.dataService.getAlumnos(); // Update the list after adding
+    this.newAlumno = new Alumno();
     this.showForm = false;
   }
+
 }
 
 
