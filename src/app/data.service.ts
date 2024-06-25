@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from './matricula/alumno';
 import { Curso } from './matricula/curso';
+import { Matricula } from './matricula/matricula';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { Curso } from './matricula/curso';
 export class DataService {
   private ALUMNOS_KEY = 'alumnos';
   private CURSOS_KEY = 'cursos';
+  private MATRICULAS_KEY = 'matricula';
 
   constructor() {
     this.loadInitialData();
@@ -31,6 +33,18 @@ export class DataService {
       ];
       localStorage.setItem(this.CURSOS_KEY, JSON.stringify(initialCursos));
     }
+
+    if (!localStorage.getItem(this.MATRICULAS_KEY)) {
+      const initialMatriculas: Matricula[] = [
+        { id: '1', alumno: {id:'0',nombres:'Jorge'}, curso: {id:'0',nombre:'Frontend'}, creditos: 3, precioPorCredito: 50 ,
+          montoAPagar:300,estado:false
+        }
+      
+      ];
+      localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(initialMatriculas));
+    }
+
+
   }
 
   getAlumnos(): Alumno[] {
@@ -39,6 +53,9 @@ export class DataService {
 
   getCursos(): Curso[] {
     return JSON.parse(localStorage.getItem(this.CURSOS_KEY) || '[]');
+  }
+  getMatriculas(): Matricula[] {
+    return JSON.parse(localStorage.getItem(this.MATRICULAS_KEY) || '[]');
   }
 
   addAlumno(alumno: Alumno): void {
@@ -52,14 +69,20 @@ export class DataService {
 
 
 
-addCurso(curso: Curso): void {
-  const cursos = this.getCursos();
-  const newId = cursos.length > 0 ? Math.max(...cursos.map(c => Number(c.id))) + 1 : 1;
-  curso.id = String(newId);
-  cursos.push(curso);
-  localStorage.setItem(this.CURSOS_KEY, JSON.stringify(cursos));
-
-}
+  addCurso(curso: Curso): void {
+    const cursos = this.getCursos();
+    const newId = cursos.length > 0 ? Math.max(...cursos.map(c => Number(c.id))) + 1 : 1;
+    curso.id = String(newId);
+    cursos.push(curso);
+    localStorage.setItem(this.CURSOS_KEY, JSON.stringify(cursos));
+  }
+  addMatricula(matricula: Matricula): void {
+    const matriculas = this.getMatriculas();
+    const newId = matriculas.length > 0 ? Math.max(...matriculas.map(m => Number(m.id))) + 1 : 1;
+    matricula.id = String(newId);
+    matriculas.push(matricula);
+    localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(matriculas));
+  }
 }
 
 
