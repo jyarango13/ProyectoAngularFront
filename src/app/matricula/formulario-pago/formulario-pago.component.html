@@ -1,55 +1,20 @@
-<div [hidden]="enviado">
-	<form (ngSubmit)="onSubmit()" #pagoForm="ngForm">
-		<div class="form.group">
-			<label for="id">Id</label>
-			<input type="text" class="form-control" id="id" required [(ngModel)]="modelo.id" name="id">
-
-			<label for="id">Nombre</label>
-			<input type="text" class="form-control" id="nombres" required [(ngModel)]="modelo.nombres" name="nombres">
-
-			<label for="id">Apellidos</label>
-			<input type="text" class="form-control" id="apellidos" required [(ngModel)]="modelo.apellidos" name="apellidos">
-
-            <label for="id">Fecha de Nacimiento</label>
-			<input type="text" class="form-control" id="fecNac" required [(ngModel)]="modelo.fecNac" name="fecNac">
-
-            <label for="id">Dirección</label>
-			<input type="text" class="form-control" id="direccion" required [(ngModel)]="modelo.direccion" name="direccion">
-
-            <label for="id">Correo</label>
-			<input type="text" class="form-control" id="correo" required [(ngModel)]="modelo.correo" name="correo">
-
-            <label for="id">Telefono</label>
-			<input type="text" class="form-control" id="telefono" required [(ngModel)]="modelo.telefono" name="telefono">
-
-		</div>
-
-    
-
-		<button type="submit" class="btn btn-primary" [disabled]="!pagoForm.valid">Enviar</button>
-	</form>
-</div>
-<div [hidden]="!enviado">
-	<h2>Formulario</h2>
-	<div>
-		Id: {{modelo.id}}
-		Nombre: {{modelo.nombres}}
-		Apellidos: {{modelo.apellidos}}
-		Fecha de Nacimiento: {{modelo.fecNac}}
-        Dirección: {{modelo.direccion}}
-        Correo: {{modelo.correo}}
-		Telefono: {{modelo.telefono}}
-		<button class="btn btn-primary" (click)="enviado=false">Editar</button>
+<div class="container mt-3">
+	<h2>Lista de Matrículas</h2>
+	<div *ngFor="let matricula of matriculas" class="card mb-3">
+	  <div class="card-body">
+		<h5 class="card-title">{{ matricula.alumno.nombres }} {{ matricula.alumno.apellidos }}</h5>
+		<p class="card-text">
+		  Curso: {{ matricula.curso.nombre }}<br>
+		  Créditos: {{ matricula.creditos }}<br>
+		  Precio por Crédito: {{ matricula.precioPorCredito }}<br>
+		  Monto a Pagar: {{ matricula.montoAPagar }}<br>
+		 
+		</p>
+		Estado: <p class="estado-pago" [ngClass]="{'pago-realizado': matricula.estado, 'pendiente-pago': !matricula.estado}">
+			{{matricula.estado ? 'Pago realizado' : 'Pendiente de pago'}}</p>
+		<button *ngIf="!matricula.estado" class="btn btn-success" (click)="realizarPago(matricula)">Realizar Pago</button>
+	  </div>
 	</div>
-</div>
+  </div>
+  
 
-
-    <!-- public id?: string,
-        public nombres?: string,
-        public apellidos?: string,
-        public fecNac?:Date,
-        public direccion?: string,
-        public correo?: string,
-        public telefono?: string,
-//Estructura de Alumno (id, nombres, apellidos, fecha de nacimiento, 
-//dirección, correo, teléfono).  Cantidad para la lista: 15. -->

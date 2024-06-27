@@ -97,46 +97,6 @@ export class FormularioMatriculaComponent implements OnInit {
 
 
 
-//antiguo
-// import { Component, OnInit } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-
-// import { DataService } from '../../data.service';
-// import { Alumno } from '../alumno';
-// import { Curso } from '../curso';
-// @Component({
-//   selector: 'app-formulario-matricula',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule],
-//   templateUrl: './formulario-matricula.component.html',
-//   styleUrls: ['./formulario-matricula.component.css']
-// })
-// export class FormularioMatriculaComponent implements OnInit {
-//   alumnos: Alumno[] = [];
-//   cursos: Curso[] = [];
-//   matricula = {
-//     alumnoId: '',
-//     cursoId: ''
-//   };
-
-//   constructor(private dataService: DataService) { }
-
-//   ngOnInit(): void {
-//     this.alumnos = this.dataService.getAlumnos();
-//     this.cursos = this.dataService.getCursos();
-//   }
-
-//   onSubmit(): void {
-//     console.log('Alumno ID:', this.matricula.alumnoId);
-//     console.log('Curso ID:', this.matricula.cursoId);
-//     // Aquí puedes agregar la lógica para matricular al alumno en el curso
-//   }
-
-// }
-
-
-
 
 
 

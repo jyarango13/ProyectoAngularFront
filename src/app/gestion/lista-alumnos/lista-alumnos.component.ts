@@ -15,21 +15,6 @@ import { DataService } from '../../data.service';
 
 
 export class ListaAlumnosComponent implements OnInit {
-  // //alumnos: Alumno[] =[];
-  // alumnos = this.dataService.getAlumnos();;
-  // showForm = false;
-  // newAlumno: Alumno = new Alumno();
-
-  // constructor(private dataService: DataService) { }
-
-  // ngOnInit(): void {
-  //   this.alumnos = this.dataService.getAlumnos();
-  // }
-
-  // toggleForm(): void {
-  //   this.showForm = !this.showForm;
-  // }
-
 
   alumnos: Alumno[] = [];
   showForm = false;

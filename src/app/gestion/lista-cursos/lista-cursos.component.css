@@ -1,13 +1,27 @@
 .card {
-    margin-top: 20px;
-  }
-  
-  .list-group-item {
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    border-radius: 5px;
-  }
-  
-  h5 {
-    color: #007bff;
-  }
+  margin-top: 20px;
+}
+
+.list-group-item {
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+h5 {
+  color: #007bff;
+}
+
+#categorias option[value="software"] {
+  color: blue;
+}
+
+/* Estilo para la categoría "gestión" */
+#categorias option[value="gestión"] {
+  color: green;
+}
+
+/* Estilo para la categoría "otros" */
+#categorias option[value="otros"] {
+  color: purple;
+}

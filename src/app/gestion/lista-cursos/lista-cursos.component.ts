@@ -13,6 +13,8 @@ import { DataService } from '../../data.service';
 })
 export class ListaCursosComponent implements OnInit {
   cursos: Curso[] = [];
+  categorias: string[] = ['software', 'gestión', 'otros'];
+  creditos: number[] = [0, 1, 2, 3, 4, 5];
   showForm = false;
   newCurso: Curso = new Curso();
 

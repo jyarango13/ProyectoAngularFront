@@ -1,35 +1,28 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Curso } from '../curso';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Alumno } from '../alumno';
+import { DataService } from '../../data.service';
+import { Matricula } from '../matricula';
 
 @Component({
   selector: 'app-formulario-pago',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './formulario-pago.component.html',
-  styleUrl: './formulario-pago.component.css'
+  styleUrls: ['./formulario-pago.component.css']
 })
-export class FormularioPagoComponent {
- 
-  modelo = new Alumno("cod", "Jose","Apellido",'2024/01/12','Los girasoles 325', 'correo','+52 989898');
-  enviado = false;
+export class FormularioPagoComponent implements OnInit {
+  matriculas: Matricula[] = [];
 
-  ngOnInit(): void { }
+  constructor(private dataService: DataService) { }
 
-  onSubmit() {
-    this.enviado = true;
+  ngOnInit(): void {
+    this.matriculas = this.dataService.getMatriculas();
+  }
+
+  realizarPago(matricula: Matricula): void {
+    matricula.estado = true;
+    this.dataService.updateMatricula(matricula);
   }
 }
 
 
-// <!-- public id?: string,
-// public nombres?: string,
-// public apellidos?: string,
-// public fecNac?:string,
-// public direccion?: string,
-// public correo?: string,
-// public telefono?: string,
-//Estructura de Alumno (id, nombres, apellidos, fecha de nacimiento, 
-//dirección, correo, teléfono).  Cantidad para la lista: 15. -->

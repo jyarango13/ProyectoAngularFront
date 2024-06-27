@@ -35,13 +35,7 @@ export class DataService {
     }
 
     if (!localStorage.getItem(this.MATRICULAS_KEY)) {
-      // const initialMatriculas: Matricula[] = [
-      //   { id: '1', alumno: {id:'0',nombres:'Jorge'}, curso: {id:'0',nombre:'Frontend'}, creditos: 3, precioPorCredito: 50 ,
-      //     montoAPagar:300,estado:false
-      //   }
-
-      // ];
-      // localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(initialMatriculas));
+  
       localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify([]));
     }
 
@@ -65,10 +59,9 @@ export class DataService {
     alumno.id = String(newId);
     alumnos.push(alumno);
     localStorage.setItem(this.ALUMNOS_KEY, JSON.stringify(alumnos));
+    alert("Alumno Agregado!");
+
   }
-
-
-
 
   addCurso(curso: Curso): void {
     const cursos = this.getCursos();
@@ -76,6 +69,7 @@ export class DataService {
     curso.id = String(newId);
     cursos.push(curso);
     localStorage.setItem(this.CURSOS_KEY, JSON.stringify(cursos));
+    alert("Curso Agregado!");
   }
   addMatricula(matricula: Matricula): void {
     const matriculas = this.getMatriculas();
@@ -83,6 +77,18 @@ export class DataService {
     matricula.id = String(newId);
     matriculas.push(matricula);
     localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(matriculas));
+    alert("Matricula realizada correctamente!");
+  }
+
+  updateMatricula(matricula: Matricula): void {
+    const matriculas = this.getMatriculas();
+    const index = matriculas.findIndex(m => m.id === matricula.id);
+    if (index !== -1) {
+      matriculas[index] = matricula;
+      localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(matriculas));
+    }
+    alert("Se realizó el pago con éxito!");
+
   }
 }
 
