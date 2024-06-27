@@ -26,10 +26,14 @@ export class FormularioMatriculaComponent implements OnInit {
   //Para crear matricula
   matricula = {
     alumnoId: '',
-    cursoId: ''
+    cursoId: '',
+    creditos: 0,
+    precioPorCredito: 50,
+    montoAPagar: 0,
+    estado: false
   };
   showForm = false;
-newMatricula: Matricula = new Matricula('0',{nombres:'Yarango'},{nombre:'Frontes'},5,50,250,false);
+  newMatricula: Matricula = new Matricula('0', { nombres: 'Yarango' }, { nombre: 'Frontes' }, 5, 50, 250, false);
 
 
 
@@ -49,49 +53,78 @@ newMatricula: Matricula = new Matricula('0',{nombres:'Yarango'},{nombre:'Frontes
   onSubmit(): void {
     // console.log('Alumno ID:', this.matricula.alumnoId);
     // console.log('Curso ID:', this.matricula.cursoId);
+    const alumno = this.alumnos.find(a => Number(a.id) === +this.matricula.alumnoId);
+    const curso = this.cursos.find(c => Number(c.id) === +this.matricula.cursoId);
+    if (alumno && curso) {
+      const creditos = curso.creditos || 0;
+      const montoAPagar = creditos * this.matricula.precioPorCredito;
+      const nuevaMatricula = new Matricula(
+        '0',
+        alumno,
+        curso,
+        creditos,
+        this.matricula.precioPorCredito,
+        montoAPagar,
+        this.matricula.estado
+      );
+      this.dataService.addMatricula(nuevaMatricula);
+      this.matriculas = this.dataService.getMatriculas();
+      console.log('Matrícula realizada:', nuevaMatricula);
+      this.resetForm();
+    }
 
-   
+    // this.dataService.addCurso(this.newCurso);
+    // this.cursos = this.dataService.getCursos();  // Refresh the list after adding
+    // this.newCurso = new Curso();
+    // this.showForm = false;
+
+
+
+
+  }
+  private resetForm() {
+    this.matricula = {
+      alumnoId: '',
+      cursoId: '',
+      creditos: 0,
+      precioPorCredito: 50,
+      montoAPagar: 0,
+      estado: false
+    };
   }
 
-  addMatricula(): void {
+  // addMatricula(): void {
 
-    // const alumno = this.alumnos.find(a => Number(a.id) === +this.matriculas.alumnoId);
-    // const curso = this.cursos.find(c => Number(c.id) === +this.matricula.cursoId);
-    // if (alumno && curso) {
-    //   const creditos = curso.creditos || 0;
-    //   const montoAPagar = creditos * this.matricula.precioPorCredito;
-    //   const newMatricula = new Matricula(
-    //     '0',
-    //     alumno,
-    //     curso,
-    //     creditos,
-    //     this.matricula.precioPorCredito,
-    //     montoAPagar,
-    //     this.matricula.estado
-    //   );
-    //   this.dataService.addMatricula(newMatricula);
-    //   console.log('Matrícula realizada:', newMatricula);
-    //   this.resetForm();
-    // }    
-    this.dataService.addMatricula(this.newMatricula);
-    this.matriculas = this.dataService.getMatriculas(); // Update the list after adding
-    this.newMatricula = new Matricula('0',{nombres:'Yarango'},{nombre:'Frontes'},5,50,250,false);
-    this.showForm = false;
-  }
+  //   // const alumno = this.alumnos.find(a => Number(a.id) === +this.matriculas.alumnoId);
+  //   // const curso = this.cursos.find(c => Number(c.id) === +this.matricula.cursoId);
+  //   // if (alumno && curso) {
+  //   //   const creditos = curso.creditos || 0;
+  //   //   const montoAPagar = creditos * this.matricula.precioPorCredito;
+  //   //   const newMatricula = new Matricula(
+  //   //     '0',
+  //   //     alumno,
+  //   //     curso,
+  //   //     creditos,
+  //   //     this.matricula.precioPorCredito,
+  //   //     montoAPagar,
+  //   //     this.matricula.estado
+  //   //   );
+  //   //   this.dataService.addMatricula(newMatricula);
+  //   //   console.log('Matrícula realizada:', newMatricula);
+  //   //   this.resetForm();
+  //   // }    
 
 
 
-  // private resetForm() {
-  //   this.matricula = {
-  //     id: 0,
-  //     alumnoId: '',
-  //     cursoId: '',
-  //     creditos: 0,
-  //     precioPorCredito: 50,
-  //     montoAPagar: 0,
-  //     estado: false
-  //   };
+  //   this.dataService.addMatricula(this.newMatricula);
+  //   this.matriculas = this.dataService.getMatriculas(); // Update the list after adding
+  //   this.newMatricula = new Matricula('0',{nombres:'Yarango'},{nombre:'Frontes'},5,50,250,false);
+  //   this.showForm = false;
   // }
+
+
+
+
 
 }
 

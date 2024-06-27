@@ -35,13 +35,14 @@ export class DataService {
     }
 
     if (!localStorage.getItem(this.MATRICULAS_KEY)) {
-      const initialMatriculas: Matricula[] = [
-        { id: '1', alumno: {id:'0',nombres:'Jorge'}, curso: {id:'0',nombre:'Frontend'}, creditos: 3, precioPorCredito: 50 ,
-          montoAPagar:300,estado:false
-        }
-      
-      ];
-      localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(initialMatriculas));
+      // const initialMatriculas: Matricula[] = [
+      //   { id: '1', alumno: {id:'0',nombres:'Jorge'}, curso: {id:'0',nombre:'Frontend'}, creditos: 3, precioPorCredito: 50 ,
+      //     montoAPagar:300,estado:false
+      //   }
+
+      // ];
+      // localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify(initialMatriculas));
+      localStorage.setItem(this.MATRICULAS_KEY, JSON.stringify([]));
     }
 
 
