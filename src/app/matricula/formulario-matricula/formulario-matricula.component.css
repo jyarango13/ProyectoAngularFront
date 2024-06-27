@@ -11,3 +11,10 @@
   h5 {
     color: #007bff;
   }
+  .pago-realizado {
+    color: green;
+  }
+  
+  .pendiente-pago {
+    color: red;
+  }

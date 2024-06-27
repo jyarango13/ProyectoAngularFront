@@ -68,17 +68,11 @@ export class FormularioMatriculaComponent implements OnInit {
         this.matricula.estado
       );
       this.dataService.addMatricula(nuevaMatricula);
+      //para llamar matriculas al instantes ni bien ingresadas
       this.matriculas = this.dataService.getMatriculas();
       console.log('Matrícula realizada:', nuevaMatricula);
       this.resetForm();
     }
-
-    // this.dataService.addCurso(this.newCurso);
-    // this.cursos = this.dataService.getCursos();  // Refresh the list after adding
-    // this.newCurso = new Curso();
-    // this.showForm = false;
-
-
 
 
   }
@@ -93,35 +87,7 @@ export class FormularioMatriculaComponent implements OnInit {
     };
   }
 
-  // addMatricula(): void {
-
-  //   // const alumno = this.alumnos.find(a => Number(a.id) === +this.matriculas.alumnoId);
-  //   // const curso = this.cursos.find(c => Number(c.id) === +this.matricula.cursoId);
-  //   // if (alumno && curso) {
-  //   //   const creditos = curso.creditos || 0;
-  //   //   const montoAPagar = creditos * this.matricula.precioPorCredito;
-  //   //   const newMatricula = new Matricula(
-  //   //     '0',
-  //   //     alumno,
-  //   //     curso,
-  //   //     creditos,
-  //   //     this.matricula.precioPorCredito,
-  //   //     montoAPagar,
-  //   //     this.matricula.estado
-  //   //   );
-  //   //   this.dataService.addMatricula(newMatricula);
-  //   //   console.log('Matrícula realizada:', newMatricula);
-  //   //   this.resetForm();
-  //   // }    
-
-
-
-  //   this.dataService.addMatricula(this.newMatricula);
-  //   this.matriculas = this.dataService.getMatriculas(); // Update the list after adding
-  //   this.newMatricula = new Matricula('0',{nombres:'Yarango'},{nombre:'Frontes'},5,50,250,false);
-  //   this.showForm = false;
-  // }
-
+ 
 
 
 

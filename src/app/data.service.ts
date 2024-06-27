@@ -20,8 +20,8 @@ export class DataService {
   private loadInitialData() {
     if (!localStorage.getItem(this.ALUMNOS_KEY)) {
       const initialAlumnos: Alumno[] = [
-        { id: '1', nombres: 'Juan', apellidos: 'Perez', fecNac: '1990-01-01', direccion: 'Calle 123', correo: 'juan@example.com', telefono: '123456789' },
-        { id: '2', nombres: 'Maria', apellidos: 'Lopez', fecNac: '1992-02-02', direccion: 'Avenida 456', correo: 'maria@example.com', telefono: '987654321' }
+        { id: '1', nombres: 'Juan', apellidos: 'Perez Ruiz', fecNac: '1990-01-01', direccion: 'Calle 123', correo: 'juan@example.com', telefono: '123456789' },
+        { id: '2', nombres: 'Maria', apellidos: 'Lopez Yarango', fecNac: '1992-02-02', direccion: 'Avenida 456', correo: 'maria@example.com', telefono: '987654321' }
       ];
       localStorage.setItem(this.ALUMNOS_KEY, JSON.stringify(initialAlumnos));
     }
